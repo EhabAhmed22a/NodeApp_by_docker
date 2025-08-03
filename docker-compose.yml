@@ -16,12 +16,13 @@ services:
 
         back: 
           container_name: back
+          image: ehab2211/nodeapp:backend
           networks: 
              - mynetwork
           depends_on:
           - Database
           volumes: 
-           - "/home/ehabahmed/Docker_project/backend/logs:/app/logs/"
+           - logs:/app/logs/
            - /app/node_modules
 
         
@@ -40,3 +41,6 @@ networks:
 volumes:
     DBdata:
       name: DBdata
+    logs:
+      name: logs
+    
