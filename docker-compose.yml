@@ -28,6 +28,7 @@ services:
         
         front:
           build: ./frontend/
+          image: ehab2211/nodeapp:frontend
           container_name: webserver
           networks: 
             - mynetwork
