@@ -1,0 +1,17 @@
+services:
+        back:
+          build: 
+            context: ./backend/
+            target: development
+          volumes: 
+              - "/home/ehabahmed/Docker_project/backend/:/app/"
+          ports: 
+            - "8080:80"
+        front:
+          build: 
+            context: ./frontend/
+            target: development
+          ports: 
+            - "3000:3000"
+          volumes: 
+            - "/home/ehabahmed/Docker_project/frontend:/app/"

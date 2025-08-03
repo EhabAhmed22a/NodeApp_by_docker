@@ -1,0 +1,13 @@
+services:
+        back:
+          build: 
+            context: ./backend/
+            target: production
+          ports: 
+              - 8000:80
+        front:
+          build: 
+            context: ./frontend/
+            target: production
+          ports:  
+            - 80:3000

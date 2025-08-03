@@ -1,0 +1,42 @@
+
+services:
+        Database:
+          image : mongo
+          restart: always
+          environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: secret
+          networks:   
+              - mynetwork 
+          
+          container_name: mongodb
+          volumes: 
+              - DBdata:/data/db
+              
+
+        back: 
+          container_name: back
+          networks: 
+             - mynetwork
+          depends_on:
+          - Database
+          volumes: 
+           - "/home/ehabahmed/Docker_project/backend/logs:/app/logs/"
+           - /app/node_modules
+
+        
+        front:
+          build: ./frontend/
+          container_name: webserver
+          networks: 
+            - mynetwork
+          volumes:
+            - /app/node_modules
+
+networks:
+    mynetwork:
+      name: mynetwork
+      driver: bridge
+volumes:
+    DBdata:
+      name: DBdata
