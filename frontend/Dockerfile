@@ -17,13 +17,8 @@ CMD [ "npm", "start" ]
 FROM base as production
 
 WORKDIR /app
-ENV REACT_APP_API_PORT=8000
 COPY package.json .
-
 RUN npm install --only=production
-
 COPY . .
-
-EXPOSE 80
-
-CMD [ "npm", "start" ]
+EXPOSE 3000
+CMD ["npm","start"]

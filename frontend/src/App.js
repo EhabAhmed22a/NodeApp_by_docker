@@ -8,7 +8,6 @@ function App() {
   const [loadedGoals, setLoadedGoals] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const port = process.env.REACT_APP_API_PORT
 
   useEffect(function () {
 
@@ -18,7 +17,7 @@ function App() {
       setIsLoading(true);
 
       try {
-        const response = await fetch(`http://back:${port}/goals`);
+        const response = await fetch(`http://localhost:8000/goals`);
 
         const resData = await response.json();
 
@@ -37,13 +36,13 @@ function App() {
     }
 
     fetchData();
-  }, [port]);
+  }, []);
 
   async function addGoalHandler(goalText) {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`http://back:${port}/goals`, {
+      const response = await fetch(`http://localhost:8000/goals`, {
         method: 'POST',
         body: JSON.stringify({
           text: goalText,
@@ -82,7 +81,7 @@ function App() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`http://back:${port}/goals` + goalId, {
+      const response = await fetch(`http://localhost:8000/goals` + goalId, {
         method: 'DELETE',
       });
 
